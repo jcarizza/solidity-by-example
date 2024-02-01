@@ -39,6 +39,16 @@ async function main() {
       lockedAmount
     )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
   );
+
+  const primitiveDataTypes = await ethers.deployContract("PrimitiveDataTypes");
+
+  await primitiveDataTypes.waitForDeployment();
+
+  console.log(
+    `primitiveDataTypes with ${ethers.formatEther(
+      lockedAmount
+    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

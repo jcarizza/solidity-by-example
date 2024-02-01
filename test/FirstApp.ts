@@ -1,17 +1,12 @@
 import {
-    time,
     loadFixture,
   } from "@nomicfoundation/hardhat-toolbox/network-helpers";
   import { expect } from "chai";
   import { ethers } from "hardhat";
   
   describe("FirstApp", function () {
-    // We define a fixture to reuse the same setup in every test.
-    // We use loadFixture to run this setup once, snapshot that state,
-    // and reset Hardhat Network to that snapshot in every test.
-    async function deployFirstApp() {
+      async function deployFirstApp() {
       
-      // Contracts are deployed using the first signer/account by default
       const [owner, otherAccount] = await ethers.getSigners();
   
       const FirstApp = await ethers.getContractFactory("Counter");
@@ -20,7 +15,7 @@ import {
       return { firstApp, owner, otherAccount };
     }
 
-    describe("Deployment", function () {
+    describe("Test increment", function () {
         it("Should increment counter by 1", async function () {
             const {firstApp, owner, otherAccount} = await loadFixture(deployFirstApp);
             await firstApp.inc();
@@ -29,7 +24,7 @@ import {
         })
     });
 
-    describe("Deployment", function () {
+    describe("Test decrease", function () {
       it("Should decrease counter to 1", async function () {
           const {firstApp, owner, otherAccount} = await loadFixture(deployFirstApp);
           await firstApp.inc();

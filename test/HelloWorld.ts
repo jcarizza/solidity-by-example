@@ -7,9 +7,6 @@ import {
   import { ethers } from "hardhat";
   
   describe("HelloWorld", function () {
-    // We define a fixture to reuse the same setup in every test.
-    // We use loadFixture to run this setup once, snapshot that state,
-    // and reset Hardhat Network to that snapshot in every test.
     async function deployHelloWorld() {
       
       // Contracts are deployed using the first signer/account by default
@@ -21,11 +18,14 @@ import {
       return { helloWorld, owner, otherAccount };
     }
 
-  describe("HelloWorld", function () {
+  describe("Greet should be Hello World!", function () {
       describe("Events", function () {
-        it("Should emit an event on withdrawals", async function () {})
+        it("Test greet is ok", async function () {
+          let { helloWorld } = await loadFixture(deployHelloWorld);
+          let greet = await helloWorld.greet();
+          expect(greet).to.be.equal("Hello World!");
+        })
       });
-
     });
   });
   
